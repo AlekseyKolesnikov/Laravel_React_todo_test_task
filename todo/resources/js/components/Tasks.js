@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import update from 'immutability-helper';
+import axios from 'axios';
 import Task from "./Task";
 import AddTaskDialog from './AddTaskDialog';
 
@@ -8,23 +9,34 @@ export default class Tasks extends Component {
     state = {
         addDialog: false,
         todos: [
-            {
-                id: 1,
-                title: 'Task #1',
-                completed: false,
-            },
-            {
-                id: 2,
-                title: 'Task #2',
-                completed: true,
-            },
-            {
-                id: 3,
-                title: 'Task #3',
-                completed: false,
-            },
+            // {
+            //     id: 1,
+            //     title: 'Task #1',
+            //     completed: false,
+            // },
+            // {
+            //     id: 2,
+            //     title: 'Task #2',
+            //     completed: true,
+            // },
+            // {
+            //     id: 3,
+            //     title: 'Task #3',
+            //     completed: false,
+            // },
         ],
     };
+
+    componentDidMount() {
+        axios.get('api/tasks')
+            .then(res => {
+                //console.log(res);
+                this.setState({ todos: res.data });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     onCheck(todo, checked) {
         const i = this.state.todos.indexOf(todo);

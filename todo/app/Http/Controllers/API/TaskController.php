@@ -15,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Task::all());
     }
 
     /**
@@ -25,7 +25,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return response('not implemented', 405);
     }
 
     /**
@@ -36,7 +36,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response('not implemented', 405);
     }
 
     /**
@@ -47,7 +47,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return response('not implemented', 405);
     }
 
     /**
@@ -58,7 +58,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return response('not implemented', 405);
     }
 
     /**
@@ -70,7 +70,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        return response('not implemented', 405);
     }
 
     /**
@@ -81,6 +81,6 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        return response('not implemented', 405);
     }
 }
