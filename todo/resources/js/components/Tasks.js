@@ -31,7 +31,12 @@ export default class Tasks extends Component {
         axios.get('api/tasks')
             .then(res => {
                 //console.log(res);
-                this.setState({ todos: res.data });
+                let todos = res.data;
+                todos.map((todo) => {
+                    todo.completed = todo.completed !== '0';
+                });
+                //console.log(todos);
+                this.setState({ todos: todos });
             })
             .catch(error => {
                 console.log(error);
@@ -39,6 +44,17 @@ export default class Tasks extends Component {
     }
 
     onCheck(todo, checked) {
+        axios.post('api/tasks/' + todo.id, {
+            completed: checked,
+            _method: 'patch'
+        })
+            .then((response) => {
+                //console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
         const i = this.state.todos.indexOf(todo);
 
         this.setState({
@@ -55,17 +71,29 @@ export default class Tasks extends Component {
     }
 
     onAddDialogOkClick(title) {
-        const todo = {
-            id: this.state.todos.length + 1,
-            title: title,
-            completed: false,
-        };
+        let data = {title: title};
 
-        this.setState(prevState => ({
-            todos: [...prevState.todos, todo]
-        }));
+        axios.post('api/tasks', data)
+            .then(res => {
+                // console.log(res);
 
-        this.setState({addDialog: false});
+                const todo = {
+                    id: res.data.id,
+                    title: res.data.title,
+                    completed: res.data.status === 1,
+                };
+
+                this.setState({
+                    todos: update(this.state.todos, {$push: [todo]})
+                });
+
+                this.setState({addDialog: false});
+            })
+            .catch(error => {
+                console.log(error);
+
+                this.setState({addDialog: false});
+            });
     }
 
     render() {

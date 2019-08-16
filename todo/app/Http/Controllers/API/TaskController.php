@@ -36,7 +36,9 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        return response('not implemented', 405);
+        $todo = Task::create(['title' => $request->title]);
+        $todo->refresh();
+        return response()->json($todo);
     }
 
     /**
@@ -70,7 +72,10 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        return response('not implemented', 405);
+        $task->completed = $request->completed;
+        $task->save();
+        $task->refresh();
+        return response()->json($task);
     }
 
     /**

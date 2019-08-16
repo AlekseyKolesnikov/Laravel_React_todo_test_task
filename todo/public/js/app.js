@@ -31795,14 +31795,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddTaskDialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AddTaskDialog */ "./resources/js/components/AddTaskDialog.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -31876,8 +31868,13 @@ function (_Component) {
 
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('api/tasks').then(function (res) {
         //console.log(res);
+        var todos = res.data;
+        todos.map(function (todo) {
+          todo.completed = todo.completed !== '0';
+        }); //console.log(todos);
+
         _this2.setState({
-          todos: res.data
+          todos: todos
         });
       })["catch"](function (error) {
         console.log(error);
@@ -31886,6 +31883,13 @@ function (_Component) {
   }, {
     key: "onCheck",
     value: function onCheck(todo, checked) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('api/tasks/' + todo.id, {
+        completed: checked,
+        _method: 'patch'
+      }).then(function (response) {//console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
       var i = this.state.todos.indexOf(todo);
       this.setState({
         todos: immutability_helper__WEBPACK_IMPORTED_MODULE_2___default()(this.state.todos, _defineProperty({}, i, {
@@ -31912,30 +31916,46 @@ function (_Component) {
   }, {
     key: "onAddDialogOkClick",
     value: function onAddDialogOkClick(title) {
-      var todo = {
-        id: this.state.todos.length + 1,
-        title: title,
-        completed: false
+      var _this3 = this;
+
+      var data = {
+        title: title
       };
-      this.setState(function (prevState) {
-        return {
-          todos: [].concat(_toConsumableArray(prevState.todos), [todo])
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('api/tasks', data).then(function (res) {
+        // console.log(res);
+        var todo = {
+          id: res.data.id,
+          title: res.data.title,
+          completed: res.data.status === 1
         };
-      });
-      this.setState({
-        addDialog: false
+
+        _this3.setState({
+          todos: immutability_helper__WEBPACK_IMPORTED_MODULE_2___default()(_this3.state.todos, {
+            $push: [todo]
+          })
+        });
+
+        _this3.setState({
+          addDialog: false
+        });
+      })["catch"](function (error) {
+        console.log(error);
+
+        _this3.setState({
+          addDialog: false
+        });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var items = this.state.todos.map(function (todo) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Task__WEBPACK_IMPORTED_MODULE_4__["default"], {
           key: todo.id,
           todo: todo,
-          onCheck: _this3.onCheck.bind(_this3)
+          onCheck: _this4.onCheck.bind(_this4)
         });
       });
       var addDialog = null;
