@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 export default class Task extends Component {
-    onCheck = (event) => {
+    onCheck(event) {
         this.props.onCheck(this.props.todo, event.target.checked);
-    };
+    }
 
     render() {
         return (

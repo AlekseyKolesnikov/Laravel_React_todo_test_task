@@ -29616,6 +29616,122 @@ __webpack_require__(/*! ./components/Tasks */ "./resources/js/components/Tasks.j
 
 /***/ }),
 
+/***/ "./resources/js/components/AddTaskDialog.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/AddTaskDialog.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddTaskDialog; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var AddTaskDialog =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(AddTaskDialog, _Component);
+
+  function AddTaskDialog(props) {
+    var _this;
+
+    _classCallCheck(this, AddTaskDialog);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AddTaskDialog).call(this, props));
+    _this.input = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+    return _this;
+  }
+
+  _createClass(AddTaskDialog, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.input.current.focus();
+    }
+  }, {
+    key: "onOkClick",
+    value: function onOkClick() {
+      var value = this.input.current.value;
+      if (value) this.props.onOkClick(value);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dark-overlay"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "position-relative align-content-center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-dialog",
+        role: "document"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "modal-title",
+        id: "exampleModalLabel"
+      }, "New task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "close",
+        "data-dismiss": "modal",
+        "aria-label": "Close",
+        onClick: this.props.onCloseClick
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        "aria-hidden": "true"
+      }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "recipient-name",
+        className: "col-form-label"
+      }, "Title:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        id: "recipient-name",
+        ref: this.input
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-secondary",
+        onClick: this.props.onCloseClick
+      }, "Close"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-primary",
+        onClick: this.onOkClick.bind(this)
+      }, "OK"))))));
+    }
+  }]);
+
+  return AddTaskDialog;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Task.js":
 /*!*****************************************!*\
   !*** ./resources/js/components/Task.js ***!
@@ -29638,15 +29754,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -29656,26 +29770,17 @@ function (_Component) {
   _inherits(Task, _Component);
 
   function Task() {
-    var _getPrototypeOf2;
-
-    var _this;
-
     _classCallCheck(this, Task);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Task)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_this), "onCheck", function (event) {
-      _this.props.onCheck(_this.props.todo, event.target.checked);
-    });
-
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Task).apply(this, arguments));
   }
 
   _createClass(Task, [{
+    key: "onCheck",
+    value: function onCheck(event) {
+      this.props.onCheck(this.props.todo, event.target.checked);
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -29725,7 +29830,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var immutability_helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! immutability-helper */ "./node_modules/immutability-helper/index.js");
 /* harmony import */ var immutability_helper__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(immutability_helper__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Task__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Task */ "./resources/js/components/Task.js");
+/* harmony import */ var _AddTaskDialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddTaskDialog */ "./resources/js/components/AddTaskDialog.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -29744,6 +29858,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -29769,6 +29884,7 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Tasks)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
+      addDialog: false,
       todos: [{
         id: 1,
         title: 'Task #1',
@@ -29784,22 +29900,53 @@ function (_Component) {
       }]
     });
 
-    _defineProperty(_assertThisInitialized(_this), "onCheck", function (todo, checked) {
-      var i = _this.state.todos.indexOf(todo);
+    return _this;
+  }
 
-      _this.setState({
-        todos: immutability_helper__WEBPACK_IMPORTED_MODULE_2___default()(_this.state.todos, _defineProperty({}, i, {
+  _createClass(Tasks, [{
+    key: "onCheck",
+    value: function onCheck(todo, checked) {
+      var i = this.state.todos.indexOf(todo);
+      this.setState({
+        todos: immutability_helper__WEBPACK_IMPORTED_MODULE_2___default()(this.state.todos, _defineProperty({}, i, {
           completed: {
             $set: checked
           }
         }))
       });
-    });
-
-    return _this;
-  }
-
-  _createClass(Tasks, [{
+    }
+  }, {
+    key: "onAddClick",
+    value: function onAddClick() {
+      this.setState({
+        addDialog: true
+      });
+    }
+  }, {
+    key: "onAddDialogCloseClick",
+    value: function onAddDialogCloseClick() {
+      this.setState({
+        addDialog: false
+      });
+    }
+  }, {
+    key: "onAddDialogOkClick",
+    value: function onAddDialogOkClick(title) {
+      var todo = {
+        id: this.state.todos.length + 1,
+        title: title,
+        completed: false
+      };
+      this.setState(function (prevState) {
+        return {
+          todos: [].concat(_toConsumableArray(prevState.todos), [todo])
+        };
+      });
+      this.setState({
+        addDialog: false
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -29811,9 +29958,21 @@ function (_Component) {
           onCheck: _this2.onCheck.bind(_this2)
         });
       });
+      var addDialog = null;
+
+      if (this.state.addDialog) {
+        addDialog = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddTaskDialog__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          onCloseClick: this.onAddDialogCloseClick.bind(this),
+          onOkClick: this.onAddDialogOkClick.bind(this)
+        });
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container mt-5"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-outline-secondary mb-3",
+        onClick: this.onAddClick.bind(this)
+      }, "Add"), addDialog, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row grid-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-1"
